@@ -1,9 +1,7 @@
 package com.stringcode.restapiintroduction.controller;
 
 import Model.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,4 +36,19 @@ public class UsersController {
     public User userPathVariable(@PathVariable("id") int userid) {
         return new User(userid, user().getFirstName(), user().getFirstName());
     }
+
+//    POST
+    public User createUser( @RequestBody User user) {
+        System.out.println(user.getGender() );
+        System.out.println(user.getFirstName());
+        return user;
+    }
+
+    @GetMapping("query")
+    public User userRequestVariable (@RequestParam int Id, @RequestParam String firstName){
+        User user = new User(Id, firstName, "Chikaome");
+        System.out.println(Id);
+        return user;
+    }
 }
+
